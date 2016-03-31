@@ -1,0 +1,22 @@
+{
+  "name": "child_rearing_question",
+  "description": "",
+  "main": "",
+  "authors": [
+    "htakeo <bojan_krkic_esp@i.softbank.jp>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Chart.js": "^1.0.2",
+    "jquery": "^2.2.2"
+  }
+}
