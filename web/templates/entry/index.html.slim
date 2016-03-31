@@ -1,0 +1,46 @@
+.page-content
+  .mdl-grid
+    .mdl-cell.mdl-cell--2-col
+    .mdl-cell.mdl-cell--10-col
+
+      = form_for @enquete, entry_path(@conn, :confirm), fn f ->
+        .enq-card-wide.mdl-card.mdl-shadow--2dp
+          .mdl-card__title
+            .mdl-card__title-text 新規アンケート登録
+          .mdl-card__supporting-text
+            | 新しいアンケートを登録してみましょう。
+            | 1週間の集計で3位までに入ると、実際に投票が開始されます。
+
+            .mdl-grid
+              .mdl-cell.mdl-cell--12-col
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                  = text_input f, :title, id: "title", class: "mdl-textfield__input"
+                  label.mdl-textfield__label for="title" タイトル
+
+            .mdl-grid
+              .mdl-cell.mdl-cell--12-col
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                  = textarea f, :description, id: "description", class: "wide mdl-textfield__input", rows: "3"
+                  label.mdl-textfield__label for="description" 内容
+
+            .mdl-grid
+              .mdl-cell.mdl-cell--2-col
+                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                  = number_input f, :collection_period_date, id: "collection_period_date", class: "short-number mdl-textfield__input"
+                  label.mdl-textfield__label for="collection_period_date" 期間（日）
+
+            .mdl-grid
+              .mdl-cell.mdl-cell--12-col
+                | 選択肢を登録しましょう!
+                br
+                br
+                | 「+」ボタンを押すと選択肢が追加されます。
+
+            #selection
+
+          .mdl-card__actions.mdl-card--border
+            a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--accent
+              | 確認する
+    .mdl-cell.mdl-cell--2-col
+
+script src=static_path(@conn,"/js/entry.js")

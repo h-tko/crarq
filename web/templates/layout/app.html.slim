@@ -9,9 +9,10 @@ html lang="ja"
 
     title CRarQ
     link rel="stylesheet" href=static_path(@conn,"/css/app.css")
-    link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.brown-lime.min.css"
+    link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.brown-light_green.min.css"
     link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
 
+    script src=static_path(@conn,"/js/vendor.js")
   body
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-layout--fixed-tabs
       header.mdl-layout__header
@@ -20,13 +21,17 @@ html lang="ja"
         .mdl-layout__tab-bar.mdl-js-ripple-effect
           a.mdl-layout__tab.is-active href="#" 投票結果
           a.mdl-layout__tab href="#" アンケート一覧
-          a.mdl-layout__tab href="#" アンケート登録
+          a.mdl-layout__tab href="/entry/" アンケート登録
 
       .mdl-layout__drawer
         span.mdl-layout-title CRarQ
+        nav.mdl-navigation
+          a.mdl-navigation__link href="#" 投票結果
+          a.mdl-navigation__link href="#" アンケート一覧
+          a.mdl-navigation__link href="/entry/" アンケート登録
 
       main.mdl-layout__content role="main"
         = render @view_module, @view_template, assigns
 
-    script src=static_path(@conn,"/js/vendor.js")
     script src=static_path(@conn,"/js/app.js")
+    script src="https://code.getmdl.io/1.1.3/material.min.js"

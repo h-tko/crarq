@@ -1,1 +1,11 @@
+.enq-card-wide.mdl-card {
+  width: 768px;
+}
 
+.wide.mdl-textfield__input {
+  width: 600px;
+}
+
+.short-number.mdl-textfield__input {
+  width: 100px;
+}
