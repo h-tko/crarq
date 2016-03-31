@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import EnqueteSelection from './EnqueteSelection';
 
 export default class EnqueteSelectionList extends React.Component
 {
@@ -30,16 +31,7 @@ export default class EnqueteSelectionList extends React.Component
     render()
     {
         var lists = this.state.dataSource.map((data) => {
-            return (
-               <div key={data.id} className="mdl-grid">
-                   <div className="mdl-cell mdl-cell--12-col">
-                       <div className="mdl-textfield mdl-js-textfield">
-                           <input className="mdl-textfield__input" type="text" id={data.id} name="enquete[selection[]]"></input>
-                           <label className="mdl-textfield__label" htmlFor={data.id}>選択肢を入力してください</label>
-                       </div>
-                   </div>
-               </div>
-            );
+            return <EnqueteSelection id={data.id} />;
         });
 
         return (
