@@ -12,6 +12,23 @@ export default class EnqueteSelectionList extends React.Component
         this.state = {
             dataSource: []
         };
+
+        this.deleteObject = this.deleteObject.bind(this);
+    }
+
+    deleteObject(id)
+    {
+        var dataSource = this.state.dataSource;
+
+        for (var index in dataSource) {
+            if (dataSource[index].id === id) {
+                dataSource.splice(parseInt(index), 1);
+            }
+        }
+
+        this.setState({
+            dataSource: dataSource
+        });
     }
 
     _addSelection()
@@ -31,7 +48,7 @@ export default class EnqueteSelectionList extends React.Component
     render()
     {
         var lists = this.state.dataSource.map((data) => {
-            return <EnqueteSelection id={data.id} />;
+            return <EnqueteSelection key={data.id} id={data.id} deleteObject={this.deleteObject} />;
         });
 
         return (
