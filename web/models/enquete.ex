@@ -2,6 +2,7 @@ defmodule ChildRearingQuestion.Enquete do
   use ChildRearingQuestion.Web, :model
 
   schema "enquetes" do
+    field :category, :integer
     field :title, :string
     field :description, :string
     field :collection_period_date, :integer
@@ -13,7 +14,7 @@ defmodule ChildRearingQuestion.Enquete do
     timestamps
   end
 
-  @required_fields ~w(title description collection_period_date is_request delete_flg)
+  @required_fields ~w(category title description collection_period_date is_request delete_flg)
   @optional_fields ~w(start_date end_date)
 
   @doc """

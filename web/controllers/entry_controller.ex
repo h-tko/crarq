@@ -1,12 +1,18 @@
 defmodule ChildRearingQuestion.EntryController do
   use ChildRearingQuestion.Web, :controller
+  alias ChildRearingQuestion.YamlManager
   alias ChildRearingQuestion.Enquete
 
   def index(conn, _params) do
 
     enquete = Enquete.changeset(%Enquete{})
 
-    render conn, "index.html", enquete: enquete
+    # yamlからカテゴリー情報をとってくる
+    category = YamlManager.get("category")
+
+    data = %{enquete: enquete, category: category}
+
+    render conn, "index.html", data: data
   end
 
   def confirm(conn, %{"enquete" => enquete_params}) do

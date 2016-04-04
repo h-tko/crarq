@@ -3,13 +3,23 @@
     .mdl-cell.mdl-cell--2-col
     .mdl-cell.mdl-cell--10-col
 
-      = form_for @enquete, entry_path(@conn, :confirm), fn f ->
+      = form_for @data.enquete, entry_path(@conn, :confirm), fn f ->
         .enq-card-wide.mdl-card.mdl-shadow--2dp
           .mdl-card__title
             .mdl-card__title-text 新規アンケート登録
           .mdl-card__supporting-text
             | 新しいアンケートを登録してみましょう。
             | 1週間の集計で3位までに入ると、実際に投票が開始されます。
+
+            .mdl-grid
+              h5 カテゴリー
+
+            .mdl-grid
+              = for {key, value} <- @data.category do
+                .mdl-cell.mdl-cell--4-col
+                  label.mdl-radio.mdl-js-radio for="category_#{key}"
+                    = radio_button f, :category, key, id: "category_#{key}", class: "mdl-radio__button"
+                    span.mdl-radio__label #{value}
 
             .mdl-grid
               .mdl-cell.mdl-cell--12-col

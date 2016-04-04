@@ -3,6 +3,7 @@ defmodule ChildRearingQuestion.Repo.Migrations.CreateEnquete do
 
   def change do
     create table(:enquetes) do
+      add :category, :integer
       add :title, :string
       add :description, :string
       add :collection_period_date, :integer

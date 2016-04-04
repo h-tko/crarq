@@ -19,7 +19,7 @@ defmodule ChildRearingQuestion.Mixfile do
   def application do
     [mod: {ChildRearingQuestion, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :plug_session_redis]]
+                    :phoenix_ecto, :mariaex, :plug_session_redis, :yaml_elixir]]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,6 +38,8 @@ defmodule ChildRearingQuestion.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:plug_session_redis, "~> 0.1"},
+     {:yaml_elixir, "~> 1.0.0"},
+     {:yamerl, github: "yakaz/yamerl"},
      {:cowboy, "~> 1.0"}]
   end
 
