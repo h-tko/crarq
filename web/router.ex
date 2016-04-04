@@ -19,6 +19,7 @@ defmodule ChildRearingQuestion.Router do
     get "/", PageController, :index
     get "/entry/", EntryController, :index
     post "/entry/confirm/", EntryController, :confirm
+    post "/entry/submit/", EntryController, :submit
   end
 
   # Other scopes may use custom stacks.

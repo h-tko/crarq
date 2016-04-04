@@ -14,6 +14,11 @@
             .mdl-grid
               h5 カテゴリー
 
+            = if f.errors[:category] do
+              .mdl-grid
+                .mdl-cell.mdl-cell--12-col
+                  span.mdl-color-text--red-900 = "カテゴリー#{translate_error(f.errors[:category])}"
+
             .mdl-grid
               = for {key, value} <- @data.category do
                 .mdl-cell.mdl-cell--4-col
@@ -23,15 +28,19 @@
 
             .mdl-grid
               .mdl-cell.mdl-cell--12-col
-                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label#{if f.errors[:title] do ' is-invalid' else '' end}"
                   = text_input f, :title, id: "title", class: "mdl-textfield__input"
                   label.mdl-textfield__label for="title" タイトル
+                  = if f.errors[:title] do
+                    span.mdl-textfield__error = "タイトル#{translate_error(f.errors[:title])}"
 
             .mdl-grid
               .mdl-cell.mdl-cell--12-col
-                .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+                div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label#{if f.errors[:description] do ' is-invalid' else '' end}"
                   = textarea f, :description, id: "description", class: "wide mdl-textfield__input", rows: "3"
                   label.mdl-textfield__label for="description" 内容
+                  = if f.errors[:description] do
+                    span.mdl-textfield__error = "内容#{translate_error(f.errors[:description])}"
 
             .mdl-grid
               .mdl-cell.mdl-cell--2-col
@@ -49,8 +58,7 @@
             #selection
 
           .mdl-card__actions.mdl-card--border
-            a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--accent
-              | 確認する
+            = submit "確認する", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent"
     .mdl-cell.mdl-cell--2-col
 
 script src=static_path(@conn,"/js/entry.js")

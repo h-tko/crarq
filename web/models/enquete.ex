@@ -10,12 +10,14 @@ defmodule ChildRearingQuestion.Enquete do
     field :end_date, Ecto.Date
     field :is_request, :boolean, default: false
     field :delete_flg, :boolean, default: false
+    field :selection, {:array, :string}, virtual: true
 
     timestamps
   end
 
   @required_fields ~w(category title description collection_period_date is_request delete_flg)
   @optional_fields ~w(start_date end_date)
+  @entry_validation_fields ~w(category title description collection_period_date selection)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
@@ -26,5 +28,15 @@ defmodule ChildRearingQuestion.Enquete do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def entry_changeset(model, params \\ :empty) do
+    model
+    |> cast(params, @entry_validation_fields)
+    |> validate_number(:category, greater_than: 0)
+    |> validate_length(:title, min: 1)
+    |> validate_length(:title, max: 50)
+    |> validate_length(:description, max: 300)
+    |> validate_length(:selection, min: 1)
   end
 end

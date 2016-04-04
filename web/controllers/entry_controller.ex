@@ -17,16 +17,25 @@ defmodule ChildRearingQuestion.EntryController do
 
   def confirm(conn, %{"enquete" => enquete_params}) do
 
-    changeset = Enquete.changeset(%Enquete{}, enquete_params)
+    enquete = Enquete.entry_changeset(%Enquete{}, enquete_params)
 
-    if changeset.valid? do
+    # yamlからカテゴリー情報をとってくる
+    category = YamlManager.get("category")
+
+    data = %{enquete: enquete, category: category, selection: enquete_params["selection"]}
+
+    if data.enquete.valid? do
       # バリデーションがOKの場合は確認画面
       conn
-      |> render("confirm.html", enquete: changeset)
+      |> render("confirm.html", data: data)
     else
       # バリデーションエラー
       conn
-      |> render("index.html", enquete: changeset)
+      |> render("index.html", data: data)
     end
+  end
+
+  def submit(conn, %{"enquete" => enquete_params}) do
+
   end
 end
