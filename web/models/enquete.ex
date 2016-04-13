@@ -40,6 +40,15 @@ defmodule ChildRearingQuestion.Enquete do
     |> validate_length(:selection, min: 1)
   end
 
+  def get_list(repo) do
+    query = from e in ChildRearingQuestion.Enquete,
+      where: e.delete_flg == false,
+      select: e
+
+    query
+    |> repo.all
+  end
+
   def create(model, repo) do
     model
     |> repo.insert()

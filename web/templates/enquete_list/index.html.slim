@@ -1,0 +1,24 @@
+.page-content
+  .mdl-grid
+    .mdl-cell.mdl-cell--1-col
+    .mdl-cell.mdl-cell--10-col
+      table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+        thead
+          tr
+            th 順位
+            th.mdl-data-table__cell--non-numeric タイトル
+            th.mdl-data-table__cell--non-numeric コメント
+            th 現在の票数
+            th.mdl-data-table__cell--non-numeric 投票
+            th.mdl-data-table__cell--non-numeric 詳細
+        tbody
+          = for enquete <- @data do
+            td 1位
+            td.mdl-data-table__cell--non-numeric #{enquete.title}
+            td.mdl-data-table__cell--non-numeric #{enquete.description}
+            td
+            td
+              button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent このアンケートに投票
+            td
+              button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored 詳細を見る
+    .mdl-cell.mdl-cell--1-col
