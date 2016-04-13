@@ -39,4 +39,9 @@ defmodule ChildRearingQuestion.Enquete do
     |> validate_length(:description, max: 300)
     |> validate_length(:selection, min: 1)
   end
+
+  def create(model, repo) do
+    model
+    |> repo.insert()
+  end
 end
