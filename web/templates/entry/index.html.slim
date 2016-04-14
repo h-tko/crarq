@@ -56,18 +56,6 @@
                 | 「+」ボタンを押すと選択肢が追加されます。
 
             #selection
-              .mdl-grid
-                .mdl-cell.mdl-cell--6-col
-                  .mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-                        <input className="mdl-textfield__input" type="text" id={this.props.id} name="enquete[selection][]"></input>
-                        <label className="mdl-textfield__label" htmlFor={this.props.id}>選択肢を入力してください</label>
-                    </div>
-                </div>
-                <div className="mdl-cell mdl-cell--3-col">
-                    <button type="button" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick={this._delete.bind(this)}>削除</button>
-                </div>
-            </div>
-
 
           .mdl-card__actions.mdl-card--border
             = submit "確認する", class: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--accent"

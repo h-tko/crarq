@@ -16,6 +16,11 @@ export default class EnqueteSelectionList extends React.Component
         this.deleteObject = this.deleteObject.bind(this);
     }
 
+    componentDidUpdate()
+    {
+        componentHandler.upgradeDom();
+    }
+
     deleteObject(id)
     {
         var dataSource = this.state.dataSource;

@@ -5,7 +5,7 @@ exports.config = {
       joinTo: {
         "js/entry.js": /^(web\/static\/js\/components\/entry)/,
         "js/app.js": /web\/static\/js/,
-        "js/vendor.js": /^node_modules|^bower_components/
+        "js/vendor.js": /^node_modules|^bower_components|^(web\/static\/vendor)/
       }
 
       // To use a separate vendor.js bundle, specify two files path
