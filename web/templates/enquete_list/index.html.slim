@@ -12,7 +12,7 @@
             th.mdl-data-table__cell--non-numeric 投票
             th.mdl-data-table__cell--non-numeric 詳細
         tbody
-          = for enquete <- @data do
+          = for enquete <- @data.enquete_list do
             td 1位
             td.mdl-data-table__cell--non-numeric #{enquete.title}
             td.mdl-data-table__cell--non-numeric #{enquete.description}
@@ -20,5 +20,5 @@
             td
               button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent このアンケートに投票
             td
-              button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored 詳細を見る
+              a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る
     .mdl-cell.mdl-cell--1-col

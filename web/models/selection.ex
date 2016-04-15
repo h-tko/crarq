@@ -28,4 +28,13 @@ defmodule ChildRearingQuestion.Selection do
     model
     |> repo.insert()
   end
+
+  def get_list(repo, enquete_id) do
+    query = from s in ChildRearingQuestion.Selection,
+      where: s.enquete_id == ^enquete_id,
+      select: s
+
+    query
+    |> repo.all
+  end
 end

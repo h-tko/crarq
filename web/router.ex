@@ -25,6 +25,7 @@ defmodule ChildRearingQuestion.Router do
 
     # アンケート一覧
     get "/enquete_list/", EnqueteListController, :index
+    get "/enquete_list/detail/:id/", EnqueteListController, :detail
   end
 
   # Other scopes may use custom stacks.

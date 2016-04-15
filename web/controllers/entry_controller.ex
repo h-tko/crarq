@@ -13,7 +13,7 @@ defmodule ChildRearingQuestion.EntryController do
     # yamlからカテゴリー情報をとってくる
     category = YamlManager.get("category")
 
-    data = %{enquete: enquete, category: category}
+    data = %{enquete: enquete, category: category, active_tab: "entry"}
 
     render conn, "index.html", data: data
   end
@@ -25,7 +25,7 @@ defmodule ChildRearingQuestion.EntryController do
     # yamlからカテゴリー情報をとってくる
     category = YamlManager.get("category")
 
-    data = %{enquete: enquete, category: category, selection: enquete_params["selection"]}
+    data = %{enquete: enquete, category: category, selection: enquete_params["selection"], active_tab: "entry"}
 
     if data.enquete.valid? do
       # バリデーションがOKの場合は確認画面
@@ -72,7 +72,7 @@ defmodule ChildRearingQuestion.EntryController do
 
         {:error, enquete} ->
           conn
-          |> render("index.html", data: %{enquete: enquete, selection: selections, category: YamlManager.get("category")})
+          |> render("index.html", data: %{enquete: enquete, selection: selections, category: YamlManager.get("category"), active_tab: "entry"})
       end
 
     else
