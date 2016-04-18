@@ -24,4 +24,5 @@ defmodule ChildRearingQuestion.EnqueteListController do
     conn
     |> render("detail.html", data: data)
   end
+
 end

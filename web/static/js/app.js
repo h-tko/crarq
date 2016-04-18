@@ -19,3 +19,13 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+//
+import EnqueteRecord from "./enquete_record";
+
+$(function() {
+    if ($(".vote").length > 0) {
+        $(".vote").click(function() {
+            (new EnqueteRecord).vote($(this).attr('id'));
+        });
+    }
+});
