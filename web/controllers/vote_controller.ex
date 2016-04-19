@@ -17,7 +17,7 @@ defmodule ChildRearingQuestion.VoteController do
         |> render("vote_result.json", data: %{result: "fail", reason: "already voted"})
       else
         # 未投票の場合は投票済みリストに追加
-        [enquete_id] ++ vote
+        vote = [enquete_id] ++ vote
       end
     else
       # nilの場合は新規作成

@@ -13,15 +13,16 @@
             th.mdl-data-table__cell--non-numeric 詳細
         tbody
           = for {enquete, score} <- @data.enquete_list do
-            td 1位
-            td.mdl-data-table__cell--non-numeric #{enquete.title}
-            td.mdl-data-table__cell--non-numeric #{enquete.description}
-            td id="vote-count-#{enquete.id}" #{score.score}
-            td
-              = if enquete.id in @data.voted_list do
-                button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent.vote id=enquete.id disabled="disabled" 投票済み
-              - else
-                button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent.vote id=enquete.id このアンケートに投票
-            td
-              a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る
+            tr
+              td 1位
+              td.mdl-data-table__cell--non-numeric #{enquete.title}
+              td.mdl-data-table__cell--non-numeric #{enquete.description}
+              td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.score end}
+              td
+                = if enquete.id in @data.voted_list do
+                  button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent.vote id=enquete.id disabled="disabled" 投票済み
+                - else
+                  button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent.vote id=enquete.id このアンケートに投票
+              td
+                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る
     .mdl-cell.mdl-cell--1-col

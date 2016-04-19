@@ -44,7 +44,7 @@ defmodule ChildRearingQuestion.Enquete do
 
   def get_list_with_score(repo) do
     query = from e in Enquete,
-      join: es in EnqueteScore, on: e.id == es.enquete_id,
+      left_join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false,
       select: {e, es}
 
@@ -54,7 +54,7 @@ defmodule ChildRearingQuestion.Enquete do
 
   def get_with_score(repo, enquete_id) do
     query = from e in Enquete,
-      join: es in EnqueteScore, on: e.id == es.enquete_id,
+      left_join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false,
       select: {e, es}
 
