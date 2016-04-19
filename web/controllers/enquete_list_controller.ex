@@ -16,7 +16,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
 
   def detail(conn, _params) do
     # IDでアンケートを検索
-    enquete = Enquete.get_with_score(ChildRearingQuestion.Repo, _params["id"])
+    enquete = ChildRearingQuestion.Repo.get! Enquete, _params["id"]
 
     # アンケートIDで選択肢を検索
     selections = Selection.get_list(ChildRearingQuestion.Repo, enquete.id)

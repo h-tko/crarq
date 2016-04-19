@@ -11,14 +11,13 @@ defmodule ChildRearingQuestion.VoteController do
     vote = get_session(conn, :vote)
 
     if vote != nil do
-      case vote do
-        {enquete_id} ->
-          # 投票済みの場合は処理しない
-          conn
-          |> render("vote_result.json", data: %{result: "fail", reason: "already voted"})
-        _ ->
-          # 未投票の場合は投票済みリストに追加
-          [enquete_id] ++ vote
+      if enquete_id in vote do
+        # 投票済みの場合は処理しない
+        conn
+        |> render("vote_result.json", data: %{result: "fail", reason: "already voted"})
+      else
+        # 未投票の場合は投票済みリストに追加
+        [enquete_id] ++ vote
       end
     else
       # nilの場合は新規作成
