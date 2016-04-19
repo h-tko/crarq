@@ -7,7 +7,9 @@ defmodule ChildRearingQuestion.EnqueteListController do
   def index(conn, _params) do
 
     enquete_list = Enquete.get_list_with_score(ChildRearingQuestion.Repo)
-    data = %{enquete_list: enquete_list, active_tab: "enquete_list"}
+    voted_list = get_session(conn, :vote)
+
+    data = %{enquete_list: enquete_list, active_tab: "enquete_list", voted_list: voted_list}
 
     render conn, "index.html", data: data
   end

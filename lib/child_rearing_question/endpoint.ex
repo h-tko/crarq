@@ -30,10 +30,10 @@ defmodule ChildRearingQuestion.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  #  plug Plug.Session,
-  #    store: :cookie,
-  #    key: "_child_rearing_question_key",
-  #    signing_salt: "2SRVpeWG"
+  #plug Plug.Session,
+  #  store: :cookie,
+  #  key: "_child_rearing_question_key",
+  #  signing_salt: "2SRVpeWG"
 
   plug Plug.Session,
     store: PlugSessionRedis.Store,
