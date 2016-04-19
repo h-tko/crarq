@@ -12,11 +12,11 @@
             th.mdl-data-table__cell--non-numeric 投票
             th.mdl-data-table__cell--non-numeric 詳細
         tbody
-          = for enquete <- @data.enquete_list do
+          = for {enquete, score} <- @data.enquete_list do
             td 1位
             td.mdl-data-table__cell--non-numeric #{enquete.title}
             td.mdl-data-table__cell--non-numeric #{enquete.description}
-            td
+            td id="vote-count-#{enquete.id}" #{score.score}
             td
               button.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--accent.vote id=enquete.id このアンケートに投票
             td

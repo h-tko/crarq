@@ -9,8 +9,8 @@ defmodule ChildRearingQuestion.EnqueteScore do
     timestamps
   end
 
-  @required_fields ~w(score delete_flg)
-  @optional_fields ~w()
+  @required_fields ~w(enquete_id)
+  @optional_fields ~w(score delete_flg)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

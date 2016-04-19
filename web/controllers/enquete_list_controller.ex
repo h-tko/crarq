@@ -6,7 +6,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
 
   def index(conn, _params) do
 
-    enquete_list = Enquete.get_list(ChildRearingQuestion.Repo)
+    enquete_list = Enquete.get_list_with_score(ChildRearingQuestion.Repo)
     data = %{enquete_list: enquete_list, active_tab: "enquete_list"}
 
     render conn, "index.html", data: data
@@ -14,7 +14,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
 
   def detail(conn, _params) do
     # IDでアンケートを検索
-    enquete = ChildRearingQuestion.Repo.get! Enquete, _params["id"]
+    enquete = Enquete.get_with_score(ChildRearingQuestion.Repo, _params["id"])
 
     # アンケートIDで選択肢を検索
     selections = Selection.get_list(ChildRearingQuestion.Repo, enquete.id)

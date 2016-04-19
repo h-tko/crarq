@@ -1,18 +1,22 @@
 defmodule ChildRearingQuestion.VoteController do
   use ChildRearingQuestion.Web, :controller
+  alias ChildRearingQuestion.Repo
   alias ChildRearingQuestion.EnqueteScore
 
   def vote(conn, _params) do
+    # intにキャスト
     {enquete_id, empty} = Integer.parse(_params["enquete_id"])
 
-    enquete_score = ChildRearingQuestion.Repo.get_by EnqueteScore, enquete_id: enquete_id
+    enquete_score = Repo.get_by EnqueteScore, enquete_id: enquete_id
 
     if enquete_score == nil do
-      enquete_score = EnqueteScore.changeset(%EnqueteScore{}, _params)
+      enquete_score = EnqueteScore.changeset(%EnqueteScore{}, %{enquete_id: enquete_id, score: 1})
 
-      ChildRearingQuestion.Repo.insert(enquete_score)
+      Repo.insert(enquete_score)
     else
-      ChildRearingQuestion.Repo.update(enquete_score, inc: [score: 1])
+      update_data = Ecto.Changeset.change enquete_score, score: enquete_score.score + 1
+
+      Repo.update update_data
     end
 
     conn

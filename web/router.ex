@@ -23,9 +23,12 @@ defmodule ChildRearingQuestion.Router do
     post "/entry/confirm/", EntryController, :confirm
     post "/entry/submit/", EntryController, :submit
 
-    # アンケート一覧
+    # 投票中アンケート一覧
     get "/enquete_list/", EnqueteListController, :index
     get "/enquete_list/detail/:id/", EnqueteListController, :detail
+
+    # 実施中アンケート一覧
+    get "/current_enquete_list/", CurrentEnqueteListController, :index
 
     # 投票
     get "/vote/:enquete_id/", VoteController, :vote

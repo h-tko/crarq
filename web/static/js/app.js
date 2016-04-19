@@ -25,7 +25,8 @@ import EnqueteRecord from "./enquete_record";
 $(function() {
     if ($(".vote").length > 0) {
         $(".vote").click(function() {
-            (new EnqueteRecord).vote($(this).attr('id'));
+            var id = $(this).attr('id');
+            (new EnqueteRecord()).vote(id);
         });
     }
 });

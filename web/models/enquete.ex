@@ -1,5 +1,7 @@
 defmodule ChildRearingQuestion.Enquete do
   use ChildRearingQuestion.Web, :model
+  alias ChildRearingQuestion.Enquete
+  alias ChildRearingQuestion.EnqueteScore
 
   schema "enquetes" do
     field :category, :integer
@@ -40,10 +42,21 @@ defmodule ChildRearingQuestion.Enquete do
     |> validate_length(:selection, min: 1)
   end
 
-  def get_list(repo) do
-    query = from e in ChildRearingQuestion.Enquete,
+  def get_list_with_score(repo) do
+    query = from e in Enquete,
+      join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false,
-      select: e
+      select: {e, es}
+
+    query
+    |> repo.all
+  end
+
+  def get_with_score(repo, enquete_id) do
+    query = from e in Enquete,
+      join: es in EnqueteScore, on: e.id == es.enquete_id,
+      where: e.delete_flg == false,
+      select: {e, es}
 
     query
     |> repo.all

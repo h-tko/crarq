@@ -19,16 +19,18 @@ html lang="ja"
         .mdl-layout__header-row
           span.mdl-layout-title CRarQ
         .mdl-layout__tab-bar.mdl-js-ripple-effect
-          a class="mdl-layout__tab#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" 投票結果
-          a class="mdl-layout__tab#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="/enquete_list/" アンケート一覧
+          a class="mdl-layout__tab#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="/enquete_list/" 投票中アンケート
+          a class="mdl-layout__tab#{if @data.active_tab == "current_enquete" do ' is-active' else '' end}" href="/current_enquete_list/" 開催前アンケート
           a class="mdl-layout__tab#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="/entry/" アンケート登録
+          a class="mdl-layout__tab#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" 投票結果
 
       .mdl-layout__drawer
         span.mdl-layout-title CRarQ
         nav.mdl-navigation
+          a class="mdl-navigation__link#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="/enquete_list/" 投票中アンケート
+          a class="mdl-navigation__link#{if @data.active_tab == "current_enquete" do ' is-active' else '' end}" href="/current_enquete_list/" 開催前アンケート
+          a class="mdl-navigation__link#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="/entry/" アンケート登録
           a class="mdl-navigation__link#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" 投票結果
-          a class="mdl-navigation__link#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="#" アンケート一覧
-          a class="mdl-navigation__link#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="#" アンケート登録
 
       main.mdl-layout__content role="main"
         = render @view_module, @view_template, assigns
