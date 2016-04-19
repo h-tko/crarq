@@ -14,7 +14,7 @@
         tbody
           = for {enquete, score} <- @data.enquete_list do
             tr
-              td 1位
+              td 位
               td.mdl-data-table__cell--non-numeric #{enquete.title}
               td.mdl-data-table__cell--non-numeric #{enquete.description}
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.score end}

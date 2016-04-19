@@ -46,6 +46,7 @@ defmodule ChildRearingQuestion.Enquete do
     query = from e in Enquete,
       left_join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false,
+      order_by: [desc: es.score],
       select: {e, es}
 
     query
