@@ -22,9 +22,11 @@
               span #{@data.enquete.collection_period_date}
           .mdl-grid
             h5 選択肢
-          = for selection <- @data.selections do
-            .mdl-grid
-              .mdl-cell.mdl-cell--12-col
-                span #{selection.text}
+          ul
+            = for selection <- @data.selections do
+              .mdl-grid
+                .mdl-cell.mdl-cell--12-col
+                  li
+                    span #{selection.text}
 
     .mdl-cell.mdl-cell--2-col
