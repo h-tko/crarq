@@ -9,6 +9,12 @@ defmodule ChildRearingQuestion.EnqueteListController do
     enquete_list = Enquete.get_list_with_score(ChildRearingQuestion.Repo)
     voted_list = get_session(conn, :vote)
 
+    # セッションに投票済みリストがない場合は空のリストを登録
+    if voted_list == nil do
+      voted_list = []
+      conn = put_session(conn, :vote, voted_list)
+    end
+
     data = %{enquete_list: enquete_list, active_tab: "enquete_list", voted_list: voted_list}
 
     render conn, "index.html", data: data
