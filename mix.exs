@@ -10,6 +10,7 @@ defmodule ChildRearingQuestion.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
+     escript: escript,
      deps: deps
    ]
   end
@@ -53,5 +54,9 @@ defmodule ChildRearingQuestion.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"]]
+  end
+
+  def escript do
+    [main_module: ChildRearingQuestion.CLI]
   end
 end
