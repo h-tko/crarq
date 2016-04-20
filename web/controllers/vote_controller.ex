@@ -1,5 +1,5 @@
 defmodule ChildRearingQuestion.VoteController do
-  use ChildRearingQuestion.Web, :controller
+  use ChildRearingQuestion.BaseController
   alias ChildRearingQuestion.Repo
   alias ChildRearingQuestion.EnqueteScore
 

@@ -17,7 +17,7 @@ config :child_rearing_question, ChildRearingQuestion.Endpoint,
 config :child_rearing_question, ChildRearingQuestion.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|jsx|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|jsx|css|png|jpeg|jpg|gif|svg|ico)$},
       ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
       ~r{web/templates/.*(eex|slim|slime)$}

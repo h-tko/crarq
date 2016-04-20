@@ -1,6 +1,5 @@
 defmodule ChildRearingQuestion.EnqueteListController do
-  use ChildRearingQuestion.Web, :controller
-  alias ChildRearingQuestion.YamlManager
+  use ChildRearingQuestion.BaseController
   alias ChildRearingQuestion.Enquete
   alias ChildRearingQuestion.Selection
 
@@ -17,7 +16,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
 
     data = %{enquete_list: enquete_list, active_tab: "enquete_list", voted_list: voted_list}
 
-    render conn, "index.html", data: data
+    rend conn, "enquete_list_index", "index.html", data: data
   end
 
   def detail(conn, _params) do
@@ -30,7 +29,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
     data = %{enquete: enquete, selections: selections, active_tab: "enquete_list"}
 
     conn
-    |> render("detail.html", data: data)
+    |> rend("enquete_list_detail", "detail.html", data: data)
   end
 
 end

@@ -1,0 +1,27 @@
+entry_index: &entry_base
+  title: CRarQ | アンケート登録
+  description: たくさんの人に聞いてみたい子育ての悩みをアンケートにして登録しましょう！【CRarQ】
+  keywords: 子育て,育児,アンケート,CRarQ
+  robots: noydir,noodp,index,follow
+
+entry_confirm:
+  title: CRarQ | アンケート登録内容確認
+  description: たくさんの人に聞いてみたい子育ての悩みをアンケートにして登録しましょう！【CRarQ】
+  keywords: 子育て,育児,アンケート,CRarQ
+  robots: noydir,noodp,noindex,nofollow
+
+entry_submit: *entry_base
+
+enquete_list_index:
+  title: CRarQ | 投票中のアンケート一覧
+  description: みんなが作った子育てのアンケート。開催すべきだと思うアンケートに投票しましょう！【CRarQ】
+  keywords: 子育て,育児,アンケート,投票,CRarQ
+  robots: noydir,noodp,index,follow
+
+enquete_list_detail:
+  title: CRarQ | アンケート詳細
+  description: アンケートの詳細を見てみましょう！【CRarQ】
+  keywords: 子育て,育児,アンケート,詳細,CRarQ
+  robots: noydir,noodp,index,follow
+
+

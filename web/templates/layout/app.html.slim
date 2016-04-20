@@ -7,7 +7,14 @@ html lang="ja"
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta name="csrf" content=Plug.CSRFProtection.get_csrf_token()
 
-    title CRarQ
+    title #{@data.heading["title"]}
+
+    meta name="title" content="#{@data.heading["title"]}"
+    meta name="Description" content="#{@data.heading["description"]}"
+    meta name="Keywords" content="#{@data.heading["keywords"]}"
+    meta name="robots" content="#{@data.heading["robots"]}"
+
+    link rel="icon" href=static_path(@conn,"/favicon.ico")
     link rel="stylesheet" href=static_path(@conn,"/css/app.css")
     link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.brown-light_green.min.css"
     link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -22,7 +29,7 @@ html lang="ja"
           a class="mdl-layout__tab#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="/enquete_list/" 投票中のアンケート
           a class="mdl-layout__tab#{if @data.active_tab == "current_enquete" do ' is-active' else '' end}" href="/current_enquete_list/" 実施中のアンケート
           a class="mdl-layout__tab#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="/entry/" アンケート登録
-          a class="mdl-layout__tab#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" 投票結果
+          a class="mdl-layout__tab#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" アンケート結果
 
       .mdl-layout__drawer
         span.mdl-layout-title CRarQ
@@ -30,7 +37,7 @@ html lang="ja"
           a class="mdl-navigation__link#{if @data.active_tab == "enquete_list" do ' is-active' else '' end}" href="/enquete_list/" 投票中アンケート
           a class="mdl-navigation__link#{if @data.active_tab == "current_enquete" do ' is-active' else '' end}" href="/current_enquete_list/" 実施中のアンケート
           a class="mdl-navigation__link#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="/entry/" アンケート登録
-          a class="mdl-navigation__link#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" 投票結果
+          a class="mdl-navigation__link#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" アンケート結果
 
       main.mdl-layout__content role="main"
         = render @view_module, @view_template, assigns

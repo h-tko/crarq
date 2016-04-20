@@ -1,6 +1,6 @@
 # アンケート登録
 defmodule ChildRearingQuestion.EntryController do
-  use ChildRearingQuestion.Web, :controller
+  use ChildRearingQuestion.BaseController
   alias ChildRearingQuestion.YamlManager
   alias ChildRearingQuestion.Enquete
   alias ChildRearingQuestion.Selection
@@ -15,7 +15,7 @@ defmodule ChildRearingQuestion.EntryController do
 
     data = %{enquete: enquete, category: category, active_tab: "entry"}
 
-    render conn, "index.html", data: data
+    rend conn, "entry_index", "index.html", data: data
   end
 
   def confirm(conn, %{"enquete" => enquete_params}) do
@@ -30,11 +30,11 @@ defmodule ChildRearingQuestion.EntryController do
     if data.enquete.valid? do
       # バリデーションがOKの場合は確認画面
       conn
-      |> render("confirm.html", data: data)
+      |> rend("entry_confirm", "confirm.html", data: data)
     else
       # バリデーションエラー
       conn
-      |> render("index.html", data: data)
+      |> rend("entry_confirm", "index.html", data: data)
     end
   end
 
@@ -72,7 +72,7 @@ defmodule ChildRearingQuestion.EntryController do
 
         {:error, enquete} ->
           conn
-          |> render("index.html", data: %{enquete: enquete, selection: selections, category: YamlManager.get("category"), active_tab: "entry"})
+          |> rend("entry_submit", "index.html", data: %{enquete: enquete, selection: selections, category: YamlManager.get("category"), active_tab: "entry"})
       end
 
     else
@@ -80,7 +80,7 @@ defmodule ChildRearingQuestion.EntryController do
       data = %{enquete: enquete, category: YamlManager.get("category"),  selection: enquete_params["selection"]}
 
       conn
-      |> render("index.html", data: data)
+      |> rend("entry_submit", "index.html", data: data)
     end
   end
 end
