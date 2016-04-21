@@ -8,7 +8,7 @@ use Mix.Config
 # with brunch.io to recompile .js and .css sources.
 config :child_rearing_question, ChildRearingQuestion.Endpoint,
   http: [port: 4000],
-  https: [port: 443,
+  https: [port: 4433,
           keyfile: Path.expand("priv/ssl/localhost.key"),
           certfile: Path.expand("priv/ssl/localhost.crt")],
   debug_errors: true,
