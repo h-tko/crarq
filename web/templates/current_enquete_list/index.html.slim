@@ -1,0 +1,22 @@
+.page-content
+  .mdl-grid
+    .mdl-cell.mdl-cell--1-col
+    .mdl-cell.mdl-cell--10-col
+      table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+        thead
+          tr
+            th 順位
+            th.mdl-data-table__cell--non-numeric タイトル
+            th.mdl-data-table__cell--non-numeric コメント
+            th 現在の回答数
+            th.mdl-data-table__cell--non-numeric 詳細
+        tbody
+          = for {{enquete, score}, i} <- Enum.with_index(@data.enquete_list) do
+            tr
+              td #{i + 1}位
+              td.mdl-data-table__cell--non-numeric #{enquete.title}
+              td.mdl-data-table__cell--non-numeric #{enquete.description}
+              td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
+              td
+                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る
+    .mdl-cell.mdl-cell--1-col

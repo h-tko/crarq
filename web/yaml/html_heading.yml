@@ -24,4 +24,9 @@ enquete_list_detail:
   keywords: 子育て,育児,アンケート,詳細,CRarQ
   robots: noydir,noodp,index,follow
 
+current_enquete_list_index:
+  title: CRarQ | 実施中のアンケート一覧
+  description: 現在実施中のアンケートの一覧です。アンケートに答えて、みんなの悩みを解決してあげましょう！【CRarQ】
+  keywords: 子育て,育児,アンケート,CRarQ
+  robots: noydir,noodp,index,follow
 

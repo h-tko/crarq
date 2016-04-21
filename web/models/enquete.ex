@@ -58,9 +58,11 @@ defmodule ChildRearingQuestion.Enquete do
 
   def get_current_list(repo) do
     query = from e in Enquete,
+      join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false
              and e.status == 2,
-      select: e
+      order_by: [desc: es.selection_total_score],
+      select: {e, es}
 
     query
     |> repo.all
