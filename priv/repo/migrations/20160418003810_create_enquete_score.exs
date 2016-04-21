@@ -4,7 +4,8 @@ defmodule ChildRearingQuestion.Repo.Migrations.CreateEnqueteScore do
   def change do
     create table(:enquete_score, primary_key: false) do
       add :enquete_id, :integer, primary_key: true
-      add :score, :integer
+      add :vote_score, :integer, default: 0
+      add :selection_total_score, :integer, default: 0
       add :delete_flg, :boolean, default: false
 
       timestamps

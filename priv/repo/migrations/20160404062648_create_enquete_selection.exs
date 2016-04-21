@@ -6,6 +6,7 @@ defmodule ChildRearingQuestion.Repo.Migrations.CreateSelection do
       add :enquete_id, :string
       add :sort, :string
       add :text, :string
+      add :score, :integer
       add :delete_flg, :string
 
       timestamps

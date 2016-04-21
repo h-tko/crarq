@@ -49,7 +49,7 @@ defmodule ChildRearingQuestion.Enquete do
       left_join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false
              and e.status == 1,
-      order_by: [desc: es.score],
+      order_by: [desc: es.vote_score],
       select: {e, es}
 
     query
@@ -82,7 +82,7 @@ defmodule ChildRearingQuestion.Enquete do
       join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false
              and e.status == 1,
-      order_by: [desc: es.score],
+      order_by: [desc: es.vote_score],
       limit: ^limit,
       select: e
 

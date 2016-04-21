@@ -3,14 +3,15 @@ defmodule ChildRearingQuestion.EnqueteScore do
 
   @primary_key {:enquete_id, :integer, []}
   schema "enquete_score" do
-    field :score, :integer
+    field :vote_score, :integer
+    field :selection_total_score, :integer
     field :delete_flg, :string
 
     timestamps
   end
 
   @required_fields ~w(enquete_id)
-  @optional_fields ~w(score delete_flg)
+  @optional_fields ~w(vote_score selection_total_score delete_flg)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

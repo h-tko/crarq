@@ -28,12 +28,12 @@ defmodule ChildRearingQuestion.VoteController do
 
     if enquete_score == nil do
       # レコードがなければinsert
-      enquete_score = EnqueteScore.changeset(%EnqueteScore{}, %{enquete_id: enquete_id, score: 1})
+      enquete_score = EnqueteScore.changeset(%EnqueteScore{}, %{enquete_id: enquete_id, vote_score: 1})
 
       Repo.insert(enquete_score)
     else
       # レコードがあればカウントアップ
-      update_data = Ecto.Changeset.change enquete_score, score: enquete_score.score + 1
+      update_data = Ecto.Changeset.change enquete_score, vote_score: enquete_score.vote_score + 1
 
       Repo.update update_data
     end
