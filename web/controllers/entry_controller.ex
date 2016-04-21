@@ -46,6 +46,8 @@ defmodule ChildRearingQuestion.EntryController do
       # バリデーションがOKの場合登録処理実行
       selections = enquete_params["selection"]
 
+      enquete = Ecto.Changeset.change enquete, status: 1
+
       # アンケートの登録
       case Enquete.create(enquete, ChildRearingQuestion.Repo) do
         {:ok, _enquete} ->
