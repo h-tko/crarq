@@ -4,7 +4,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
   alias ChildRearingQuestion.Selection
 
   def index(conn, _params) do
-    enquete_list = Enquete.get_list_with_score(ChildRearingQuestion.Repo)
+    enquete_list = Enquete.get_vote_list_with_score(ChildRearingQuestion.Repo)
     voted_list = get_session(conn, :vote)
 
     # セッションに投票済みリストがない場合は空のリストを登録

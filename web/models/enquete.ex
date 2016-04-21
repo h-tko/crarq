@@ -2,6 +2,7 @@ defmodule ChildRearingQuestion.Enquete do
   use ChildRearingQuestion.Web, :model
   alias ChildRearingQuestion.Enquete
   alias ChildRearingQuestion.EnqueteScore
+  alias ChildRearingQuestion.EnqueteStatus
 
   schema "enquetes" do
     field :category, :integer
@@ -10,6 +11,7 @@ defmodule ChildRearingQuestion.Enquete do
     field :collection_period_date, :integer
     field :start_date, Ecto.Date
     field :end_date, Ecto.Date
+    field :status, :integer
     field :is_request, :boolean, default: false
     field :delete_flg, :boolean, default: false
     field :selection, {:array, :string}, virtual: true
@@ -18,7 +20,7 @@ defmodule ChildRearingQuestion.Enquete do
   end
 
   @required_fields ~w(category title description collection_period_date is_request delete_flg)
-  @optional_fields ~w(start_date end_date)
+  @optional_fields ~w(start_date end_date status)
   @entry_validation_fields ~w(category title description collection_period_date selection)
 
   @doc """
@@ -42,12 +44,23 @@ defmodule ChildRearingQuestion.Enquete do
     |> validate_length(:selection, min: 1)
   end
 
-  def get_list_with_score(repo) do
+  def get_vote_list_with_score(repo) do
     query = from e in Enquete,
       left_join: es in EnqueteScore, on: e.id == es.enquete_id,
-      where: e.delete_flg == false,
+      where: e.delete_flg == false
+             and e.status == 1,
       order_by: [desc: es.score],
       select: {e, es}
+
+    query
+    |> repo.all
+  end
+
+  def get_current_list(repo) do
+    query = from e in Enquete,
+      where: e.delete_flg == false
+             and e.status == 2,
+      select: e
 
     query
     |> repo.all
@@ -56,8 +69,22 @@ defmodule ChildRearingQuestion.Enquete do
   def get_with_score(repo, enquete_id) do
     query = from e in Enquete,
       left_join: es in EnqueteScore, on: e.id == es.enquete_id,
-      where: e.delete_flg == false,
+      where: e.delete_flg == false
+             and e.enquete_id == ^enquete_id,
       select: {e, es}
+
+    query
+    |> repo.all
+  end
+
+  def get_promoted_list(repo, limit) do
+    query = from e in Enquete,
+      join: es in EnqueteScore, on: e.id == es.enquete_id,
+      where: e.delete_flg == false
+             and e.status == 1,
+      order_by: [desc: es.score],
+      limit: ^limit,
+      select: e
 
     query
     |> repo.all
