@@ -2,6 +2,7 @@ defmodule ChildRearingQuestion.EnqueteListController do
   use ChildRearingQuestion.BaseController
   alias ChildRearingQuestion.Enquete
   alias ChildRearingQuestion.Selection
+  alias ChildRearingQuestion.YamlManager
 
   def index(conn, _params) do
     enquete_list = Enquete.get_vote_list_with_score(ChildRearingQuestion.Repo)
@@ -25,7 +26,9 @@ defmodule ChildRearingQuestion.EnqueteListController do
     # アンケートIDで選択肢を検索
     selections = Selection.get_list(ChildRearingQuestion.Repo, enquete.id)
 
-    data = %{enquete: enquete, selections: selections, active_tab: "enquete_list"}
+    category = YamlManager.get("category")
+
+    data = %{enquete: enquete, selections: selections, active_tab: "enquete_list", category: category}
 
     conn
     |> rend("enquete_list_detail", "detail.html", data: data)

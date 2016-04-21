@@ -9,7 +9,7 @@
             th.mdl-data-table__cell--non-numeric タイトル
             th.mdl-data-table__cell--non-numeric コメント
             th 現在の回答数
-            th.mdl-data-table__cell--non-numeric 詳細
+            th.mdl-data-table__cell--non-numeric 回答
         tbody
           = for {{enquete, score}, i} <- Enum.with_index(@data.enquete_list) do
             tr
@@ -19,5 +19,5 @@
                 = text_to_html(enquete.description)
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
               td
-                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る
+                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/current_enquete_list/detail/#{enquete.id}" このアンケートに答える
     .mdl-cell.mdl-cell--1-col
