@@ -4,7 +4,6 @@ defmodule ChildRearingQuestion.EnqueteListController do
   alias ChildRearingQuestion.Selection
 
   def index(conn, _params) do
-
     enquete_list = Enquete.get_list_with_score(ChildRearingQuestion.Repo)
     voted_list = get_session(conn, :vote)
 

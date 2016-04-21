@@ -9,6 +9,7 @@ defmodule ChildRearingQuestion.Repo.Migrations.CreateEnquete do
       add :collection_period_date, :integer
       add :start_date, :date
       add :end_date, :date
+      add :status, :integer, default: 1
       add :is_request, :boolean, default: false
       add :delete_flg, :boolean, default: false
 
