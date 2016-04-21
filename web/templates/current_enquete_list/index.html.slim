@@ -15,7 +15,8 @@
             tr
               td #{i + 1}位
               td.mdl-data-table__cell--non-numeric #{enquete.title}
-              td.mdl-data-table__cell--non-numeric #{enquete.description}
+              td.mdl-data-table__cell--non-numeric
+                = text_to_html(enquete.description)
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
               td
                 a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/enquete_list/detail/#{enquete.id}" 詳細を見る

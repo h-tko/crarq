@@ -9,7 +9,8 @@
       .enq-card-wide.mdl-card.mdl-shadow--2dp
         .mdl-card__title
           .mdl-card__title-text #{@data.enquete.title}
-        .mdl-card__supporting-text #{@data.enquete.description}
+        .mdl-card__supporting-text
+          = text_to_html(@data.enquete.description)
           .mdl-grid
             h5 カテゴリー
           .mdl-grid
