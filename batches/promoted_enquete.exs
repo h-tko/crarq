@@ -16,11 +16,16 @@ defmodule ChildRearingQuestion.PromotedEnquete do
 
     start_date = DatetimeUtil.get_current_date
     start_date = Ecto.Date.cast(start_date)
+    case start_date do
+      {:ok, start_date} ->
 
-    for enquete <- enquete_list do
-      # 更新処理
-      update_data = Ecto.Changeset.change enquete, [status: 2, start_date: start_date]
-      Repo.update update_data
+        for enquete <- enquete_list do
+          # 更新処理
+          update_data = Ecto.Changeset.change enquete, %{status: 2, start_date: start_date}
+          Repo.update update_data
+        end
+      _ ->
+        raise "error!"
     end
   end
 end

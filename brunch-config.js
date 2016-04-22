@@ -4,6 +4,7 @@ exports.config = {
     javascripts: {
       joinTo: {
         "js/entry.js": /^(web\/static\/js\/components\/entry)/,
+        "js/current_enquete_detail.js": /^(web\/static\/js\/components\/current_enquete_list)/,
         "js/app.js": /web\/static\/js/,
         "js/vendor.js": /^node_modules|^bower_components|^(web\/static\/vendor)/
       }
@@ -70,7 +71,8 @@ exports.config = {
   modules: {
     autoRequire: {
       "js/app.js": ["web/static/js/app"],
-      "js/entry.js": ["web/static/js/components/entry/entry"]
+      "js/entry.js": ["web/static/js/components/entry/entry"],
+      "js/current_enquete_detail.js": ["web/static/js/components/current_enquete_list/detail"]
     }
   },
 

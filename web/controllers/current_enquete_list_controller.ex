@@ -22,10 +22,10 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
     enquete = Repo.get! Enquete, enquete_id
     selections = Selection.get_list(Repo, enquete.id)
 
-    data = %{active_tab: "current_enquete", enquete: enquete, selections: selections, category: category}
+    data = %{title: enquete.title}
 
     conn
-    |> rend("current_enquete_list_detail", "detail.html", data: data)
+    |> render("detail.json", data: %{enquete: data})
   end
 
   def answer(conn, _params) do

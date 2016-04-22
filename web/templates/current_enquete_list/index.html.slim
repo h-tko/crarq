@@ -19,5 +19,7 @@
                 = text_to_html(enquete.description)
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
               td
-                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored href="/current_enquete_list/detail/#{enquete.id}" このアンケートに答える
+                .show-detail key="#{enquete.id}"
     .mdl-cell.mdl-cell--1-col
+
+script src=static_path(@conn,"/js/current_enquete_detail.js")
