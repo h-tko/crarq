@@ -32,7 +32,9 @@ export default class DetailDialog
 
     _setData(data)
     {
-        this.dialog.querySelector('.mdl-dialog__title').textContent = data.enquete.title;
+        this.dialog.querySelector('.mdl-dialog__title').innerText = data.enquete.title;
+        this.dialog.querySelector('#description').innerText = data.enquete.description;
+        this.dialog.querySelector('#category').innerText = data.enquete.category;
     }
 
     _callEnqueteDataApi(enquete_id)

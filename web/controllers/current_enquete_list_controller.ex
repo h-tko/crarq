@@ -18,11 +18,12 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
 
     enquete_id = _params["id"]
 
-    category = YamlManager.get("category")
+    category_yml = YamlManager.get("category")
+
     enquete = Repo.get! Enquete, enquete_id
     selections = Selection.get_list(Repo, enquete.id)
 
-    data = %{title: enquete.title}
+    data = %{title: enquete.title, description: enquete.description, category: category_yml[Integer.to_string(enquete.category)]}
 
     conn
     |> render("detail.json", data: %{enquete: data})
