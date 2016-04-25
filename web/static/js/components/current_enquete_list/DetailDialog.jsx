@@ -2,114 +2,54 @@
 
 import React from 'react';
 
-export default class DetailDialog extends React.Component
+export default class DetailDialog
 {
-    constructor(props)
+    constructor()
     {
-        super(props);
+        this.dialog = document.querySelector('dialog.mdl-dialog');
 
-        this.state = {
-            enquete: {
-                title: null
-            },
-            already_has_data: false,
-            setDialog: false,
+        if (!this.dialog.showModal) {
+            dialogPolyfill.registerDialog(this.dialog);
         }
+
+        this.dialog.querySelector('.close').addEventListener('click', () => {
+            this.dialog.close();
+        });
     }
 
-    componentDidUpdate()
+    show(enquete_id)
     {
-        if (this.props.is_show && !this.state.setDialog) {
-            var dialog = document.getElementById('detail-' + this.props.id);
+        this._callEnqueteDataApi(enquete_id)
+        .then(resolve => {
+            this._setData(resolve);
 
-            if (!dialog.showModal) {
-                dialogPolyfill.registerDialog(dialog);
-            }
-
-            if (dialog.querySelector('.close') !== null) {
-                dialog.showModal();
-
-                dialog.querySelector('.close').addEventListener('click', function() {
-                    dialog.close();
-                });
-
-                this.setState({
-                    enquete: this.state.enquete,
-                    already_has_data: this.state.already_has_data,
-                    setDialog: true,
-                })
-            }
-        }
+            this.dialog.showModal();
+        })
+        .catch(reject => {
+            console.log(reject);
+        });
     }
 
-    _callEnqueteDataApi()
+    _setData(data)
+    {
+        this.dialog.querySelector('.mdl-dialog__title').textContent = data.enquete.title;
+    }
+
+    _callEnqueteDataApi(enquete_id)
     {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/current_enquete_list/detail/' + this.props.id,
+                url: '/current_enquete_list/detail/' + enquete_id,
                 type: 'GET',
             })
             .done(data => {
                 data = data.data;
-                this.setState({
-                    enquete: data.enquete,
-                    already_has_data: true,
-                });
 
-                return resolve();
+                return resolve(data);
             })
             .fail(err => {
                 return reject(err);
             });
         });
-    }
-
-    _renderDialog()
-    {
-        var dialog_id = "detail-" + this.props.id;
-        if (this.state.already_has_data) {
-            return (
-                <dialog className="mdl-dialog" id={dialog_id}>
-                    <h4 className="mdl-dialog__title">{this.state.enquete.title}</h4>
-                    <div className="mdl-dialog__content">
-
-                    </div>
-                    <div className="mdl-dialog__actions">
-                        <button type="button" className="mdl-button">回答する</button>
-                        <button type="button" className="mdl-button close">閉じる</button>
-                    </div>
-                </dialog>
-            );
-        } else {
-            this._callEnqueteDataApi()
-            .then(() => {
-                return (
-                    <dialog className="mdl-dialog" id={dialog_id}>
-                        <h4 className="mdl-dialog__title">{this.state.enquete.title}</h4>
-                        <div className="mdl-dialog__content">
-
-                        </div>
-                        <div className="mdl-dialog__actions">
-                            <button type="button" className="mdl-button">回答する</button>
-                            <button type="button" className="mdl-button close">閉じる</button>
-                        </div>
-                    </dialog>
-                );
-            })
-            .catch(err => {
-                console.log(err);
-            });
-        }
-
-        return <dialog className="mdl-dialog" id={dialog_id} />;
-    }
-
-    render()
-    {
-        if (this.props.is_show) {
-            return this._renderDialog();
-        } else {
-            return <dialog/>;
-        }
     }
 }

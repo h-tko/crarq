@@ -1,21 +1,23 @@
 'use strict';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ShowDetailDialog from './ShowDetailDialog';
+import DetailDialog from './DetailDialog';
 
-var show_details = document.querySelector('.show-detail');
+var forEach = Array.prototype.forEach;
 
-if (Array.isArray(show_details)) {
-    for (var idx in show_details) {
-        ReactDOM.render(
-            <ShowDetailDialog id={show_details[idx].getAttribute("key")} />,
-            show_details[idx]
-        );
+class ShowEnqueteModal
+{
+    constructor()
+    {
+        var dialog_links = document.querySelectorAll('.show-enquete-detail');
+
+        forEach.call(dialog_links, dialog_link => {
+            // 回答するボタンのイベント
+            dialog_link.addEventListener('click', function() {
+                var enquete_id = this.getAttribute('value');
+                new DetailDialog().show(enquete_id);
+            });
+        });
     }
-} else {
-    ReactDOM.render(
-        <ShowDetailDialog id={show_details.getAttribute("key")} />,
-        show_details
-    );
 }
+
+new ShowEnqueteModal();

@@ -19,7 +19,14 @@
                 = text_to_html(enquete.description)
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
               td
-                .show-detail key="#{enquete.id}"
+                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.show-enquete-detail href="#" value="#{enquete.id}" 回答する
     .mdl-cell.mdl-cell--1-col
+
+dialog.mdl-dialog id="enquete-detail-dialog"
+  h4.mdl-dialog__title
+  .mdl-dialog__content
+  .mdl-dialog__actions
+    button.mdl-button type="button" 回答する
+    button.mdl-button.close type="button" 閉じる
 
 script src=static_path(@conn,"/js/current_enquete_detail.js")
