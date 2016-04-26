@@ -35,6 +35,16 @@ export default class DetailDialog
         this.dialog.querySelector('.mdl-dialog__title').innerText = data.enquete.title;
         this.dialog.querySelector('#description').innerText = data.enquete.description;
         this.dialog.querySelector('#category').innerText = data.enquete.category;
+
+        // selection
+        var selections = data.enquete.selections;
+        for (var idx in selections) {
+            var radio = $('<div class="mdl-grid"><div class="mdl-cell mdl-cell--12-col">').append($('<label class="mdl-radio mdl-js-radio">').attr('for', 'selection_' + selections[idx].selection_id).append($('<input type="radio" name="selection" class="mdl-radio__button">').attr('id', 'selection_' + selections[idx].selection_id).val(selections[idx].selection_id)).append($('<span>').text(selections[idx].text)));
+
+            $(this.dialog).find("#selections").append(radio);
+        }
+
+        componentHandler.upgradeDom();
     }
 
     _callEnqueteDataApi(enquete_id)

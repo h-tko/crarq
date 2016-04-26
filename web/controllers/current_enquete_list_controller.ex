@@ -23,7 +23,11 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
     enquete = Repo.get! Enquete, enquete_id
     selections = Selection.get_list(Repo, enquete.id)
 
-    data = %{title: enquete.title, description: enquete.description, category: category_yml[Integer.to_string(enquete.category)]}
+    res_selections = for selection <- selections do
+      %{selection_id: selection.id, text: selection.text}
+    end
+
+    data = %{title: enquete.title, description: enquete.description, category: category_yml[Integer.to_string(enquete.category)], selections: res_selections}
 
     conn
     |> render("detail.json", data: %{enquete: data})

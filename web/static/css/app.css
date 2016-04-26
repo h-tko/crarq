@@ -9,3 +9,7 @@
 .short-number.mdl-textfield__input {
   width: 100px;
 }
+
+dialog.lg {
+    width: 500px;
+}
