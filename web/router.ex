@@ -30,7 +30,7 @@ defmodule ChildRearingQuestion.Router do
     # 実施中アンケート一覧
     get "/current_enquete_list/", CurrentEnqueteListController, :index
     get "/current_enquete_list/detail/:id/", CurrentEnqueteListController, :detail
-    post "/current_enquete_list/answer/", CurrentEnqueteListController, :answer
+    get "/current_enquete_list/answer/:enquete_id/:selection_id/", CurrentEnqueteListController, :answer
 
     # 投票
     get "/vote/:enquete_id/", VoteController, :vote

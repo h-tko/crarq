@@ -19,11 +19,31 @@ export default class DetailDialog
 
     show(enquete_id)
     {
+        this.enquete_id = enquete_id;
+
         this._callEnqueteDataApi(enquete_id)
         .then(resolve => {
             this._setData(resolve);
 
             this.dialog.showModal();
+        })
+        .catch(reject => {
+            console.log(reject);
+        });
+    }
+
+    answer()
+    {
+        if (this.enquete_id == null) {
+            return;
+        }
+
+        var selection_id = $('input[name=selection]').val();
+
+        this._callAnswerApi(this.enquete_id, selection_id)
+        .then(resolve => {
+            alert('回答を完了しました');
+            this.dialog.close();
         })
         .catch(reject => {
             console.log(reject);
@@ -58,6 +78,22 @@ export default class DetailDialog
                 data = data.data;
 
                 return resolve(data);
+            })
+            .fail(err => {
+                return reject(err);
+            });
+        });
+    }
+
+    _callAnswerApi(enquete_id, selection_id)
+    {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/current_enquete_list/answer/' + enquete_id + '/' + selection_id + '/',
+                type: 'GET',
+            })
+            .done(data => {
+                return resolve();
             })
             .fail(err => {
                 return reject(err);

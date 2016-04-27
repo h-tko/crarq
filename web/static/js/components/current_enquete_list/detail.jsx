@@ -18,6 +18,10 @@ class ShowEnqueteModal
                 this.dialog.show(enquete_id);
             });
         });
+
+        document.getElementById('answer-btn').addEventListener('click', () => {
+            this.dialog.answer();
+        });
     }
 }
 

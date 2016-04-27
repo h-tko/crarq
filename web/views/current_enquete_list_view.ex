@@ -4,4 +4,8 @@ defmodule ChildRearingQuestion.CurrentEnqueteListView do
   def render("detail.json", %{data: data}) do
     %{data: data}
   end
+
+  def render("answer.json", %{result: data}) do
+    %{result: data}
+  end
 end

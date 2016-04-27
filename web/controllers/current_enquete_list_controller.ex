@@ -35,5 +35,7 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
 
   def answer(conn, _params) do
 
+    conn
+    |> render("answer.json", result: 'success')
   end
 end
