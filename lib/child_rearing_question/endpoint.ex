@@ -30,17 +30,17 @@ defmodule ChildRearingQuestion.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
 
-  #plug Plug.Session,
-  #  store: :cookie,
-  #  key: "_child_rearing_question_key",
-  #  signing_salt: "2SRVpeWG"
-
   plug Plug.Session,
-    store: :memcached,
+    store: :cookie,
     key: "_child_rearing_question_key",
-    table: :memcached_session,
-    signing_salt: "2SRVpeWG",
-    encryption_salt: "few98gre"
+    signing_salt: "2SRVpeWG"
+
+  #plug Plug.Session,
+  #  key: "_child_rearing_question_key",
+  #  store: :memcached,
+  #  signing_salt: "123456",
+  #  table: :memcached_sessions,
+  #  encryption_salt: "64321"
 
   #  plug Plug.Session,
   #    store: PlugSessionRedis.Store,

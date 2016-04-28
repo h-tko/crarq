@@ -40,8 +40,8 @@ config :phoenix, :stacktrace_depth, 20
 #  pool: [size: 2, max_overflow: 5],
 #  redis: [host: '127.0.0.1', port: 6379]
 
-config :plug_session_memcached,
-  server: ['127.0.0.1', 11211]
+#config :plug_session_memcached,
+#  server: [ '127.0.0.1', 11211 ]
 
 # Configure your database
 config :child_rearing_question, ChildRearingQuestion.Repo,
