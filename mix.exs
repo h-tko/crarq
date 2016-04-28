@@ -19,8 +19,12 @@ defmodule ChildRearingQuestion.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ChildRearingQuestion, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :plug_session_redis, :yaml_elixir]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :lager, :corman,
+                    :phoenix_ecto, :mariaex, :yaml_elixir],
+     included_applications: [
+       :plug_session_memcached
+     ]
+    ]
   end
 
   # Specifies which paths to compile per environment.
@@ -38,9 +42,13 @@ defmodule ChildRearingQuestion.Mixfile do
      {:phoenix_slime, "~> 0.5.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:plug_session_redis, "~> 0.1"},
+     {:plug_session_memcached, "~> 0.3.3"},
+     {:mcd, github: "EchoTeam/mcd"},
      {:yaml_elixir, "~> 1.0.0"},
      {:yamerl, github: "yakaz/yamerl"},
+     {:exrm, "~> 1.0.3"},
+     {:cf, "~> 0.2.1", override: true},
+     {:erlware_commons, github: "erlware/erlware_commons", override: true},
      {:cowboy, "~> 1.0"}]
   end
 

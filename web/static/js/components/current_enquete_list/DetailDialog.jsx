@@ -42,6 +42,7 @@ export default class DetailDialog
 
         this._callAnswerApi(this.enquete_id, selection_id)
         .then(resolve => {
+            $(this.dialog).find('#answer-btn').prop('disabled', true).text('回答済み');
             alert('回答を完了しました');
             this.dialog.close();
         })
@@ -57,6 +58,7 @@ export default class DetailDialog
         this.dialog.querySelector('#category').innerText = data.enquete.category;
 
         // selection
+        $(this.dialog).find("#selections").empty();
         var selections = data.enquete.selections;
         for (var idx in selections) {
             var radio = $('<div class="mdl-grid"><div class="mdl-cell mdl-cell--12-col">').append($('<label class="mdl-radio mdl-js-radio">').attr('for', 'selection_' + selections[idx].selection_id).append($('<input type="radio" name="selection" class="mdl-radio__button">').attr('id', 'selection_' + selections[idx].selection_id).val(selections[idx].selection_id)).append($('<span>').text(selections[idx].text)));

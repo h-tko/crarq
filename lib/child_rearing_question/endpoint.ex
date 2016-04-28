@@ -36,12 +36,30 @@ defmodule ChildRearingQuestion.Endpoint do
   #  signing_salt: "2SRVpeWG"
 
   plug Plug.Session,
-    store: PlugSessionRedis.Store,
+    store: :memcached,
     key: "_child_rearing_question_key",
-    table: :redis_sessions,
+    table: :memcached_session,
     signing_salt: "2SRVpeWG",
-    entryption_salt: "few98gre",
-    ttl: 360
+    encryption_salt: "few98gre"
+
+  #  plug Plug.Session,
+  #    store: PlugSessionRedis.Store,
+  #    key: "_child_rearing_question_key",
+  #    table: :redis_sessions,
+  #    signing_salt: "2SRVpeWG",
+  #    entryption_salt: "few98gre",
+  #    ttl: 360
 
   plug ChildRearingQuestion.Router
+
+  #  def start(_type, _args) do
+  #    import Supervisor.Spec, warn: false
+  #
+  #    ChildRearingQuestion.Endpoint.start
+  #
+  #    children = []
+  #
+  #    opts = [strategy: :one_for_one, name: ChildRearingQuestion.Supervisor]
+  #    Supervisor.start_link(children, opts)
+  #  end
 end
