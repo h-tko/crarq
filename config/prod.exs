@@ -14,10 +14,10 @@ use Mix.Config
 config :child_rearing_question, ChildRearingQuestion.Endpoint,
   http: [port: 4000],
   url: [host: "crarq.yokohama", port: 4000],
-  cache_static_manifest: "priv/static/manifest.json",
-  https: [port: 4433,
-          keyfile: Path.expand("priv/ssl/localhost.key"),
-          certfile: Path.expand("priv/ssl/localhost.crt")]
+  cache_static_manifest: "priv/static/manifest.json"
+#  https: [port: 4433,
+#          keyfile: Path.expand("priv/ssl/localhost.key"),
+#          certfile: Path.expand("priv/ssl/localhost.crt")]
 # Do not print debug messages in production
 config :logger, level: :info
 

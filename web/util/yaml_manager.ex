@@ -1,6 +1,6 @@
 defmodule ChildRearingQuestion.YamlManager do
 
-  @yaml_file_dir "web/yaml/"
+  @yaml_file_dir "./yaml/"
   @yaml_ext ".yml"
 
   def get(filename) do

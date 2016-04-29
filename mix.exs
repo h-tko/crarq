@@ -42,8 +42,6 @@ defmodule ChildRearingQuestion.Mixfile do
      {:yaml_elixir, "~> 1.0.0"},
      {:yamerl, github: "yakaz/yamerl"},
      {:exrm, "~> 1.0.3"},
-     {:cf, "~> 0.2.1", override: true},
-     {:erlware_commons, github: "erlware/erlware_commons", override: true},
      {:cowboy, "~> 1.0"}]
   end
 

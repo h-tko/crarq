@@ -7,7 +7,6 @@
           tr
             th 順位
             th.mdl-data-table__cell--non-numeric タイトル
-            th.mdl-data-table__cell--non-numeric コメント
             th 現在の票数
             th.mdl-data-table__cell--non-numeric 投票
             th.mdl-data-table__cell--non-numeric 詳細
@@ -16,8 +15,6 @@
             tr
               td #{i + 1}位
               td.mdl-data-table__cell--non-numeric #{enquete.title}
-              td.mdl-data-table__cell--non-numeric
-                = text_to_html(enquete.description)
               td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.vote_score end}
               td
                 = if enquete.id in @data.voted_list do
