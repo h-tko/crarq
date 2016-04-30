@@ -78,4 +78,20 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
     conn
     |> render("answer.json", data: %{result: "success"})
   end
+
+  def result(conn, _params) do
+
+    #IDでアンケートを検索
+    enquete = Repo.get! Enquete, _params["id"]
+
+    # アンケートIDで選択肢を検索
+    selections = Selection.get_list(Repo, enquete.id)
+
+    category = YamlManager.get("category")
+
+    data = %{enquete: enquete, selections: selections, active_tab: "current_enquete", category: category}
+
+    conn
+    |> rend("current_enquete_list_result", "result.html", data: data)
+  end
 end

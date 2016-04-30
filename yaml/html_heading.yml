@@ -30,3 +30,8 @@ current_enquete_list_index:
   keywords: 子育て,育児,アンケート,CRarQ
   robots: noydir,noodp,index,follow
 
+current_enquete_list_result:
+  title: CRarQ | 実施中のアンケートの回答結果詳細
+  description: 現在実施中のアンケートの回答結果詳細です。
+  keywords: 子育て,育児,アンケート,回答結果,CRarQ
+  robots: noydir,noodp,index,follow

@@ -31,6 +31,7 @@ defmodule ChildRearingQuestion.Router do
     get "/current_enquete_list/", CurrentEnqueteListController, :index
     get "/current_enquete_list/detail/:id/", CurrentEnqueteListController, :detail
     get "/current_enquete_list/answer/:enquete_id/:selection_id/", CurrentEnqueteListController, :answer
+    get "/current_enquete_list/result/:id/", CurrentEnqueteListController, :result
 
     # 投票
     get "/vote/:enquete_id/", VoteController, :vote
