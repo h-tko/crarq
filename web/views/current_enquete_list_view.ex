@@ -5,7 +5,11 @@ defmodule ChildRearingQuestion.CurrentEnqueteListView do
     %{data: data}
   end
 
-  def render("answer.json", %{result: data}) do
-    %{result: data}
+  def render("answer.json", %{data: data}) do
+    %{result: data.result}
+  end
+
+  def render("answer.json", %{result: result, reason: reason}) do
+    %{result: result, reason: reason}
   end
 end

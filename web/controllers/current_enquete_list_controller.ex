@@ -16,7 +16,7 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
 
   def detail(conn, _params) do
 
-    enquete_id = _params["id"]
+    {enquete_id, _} = Integer.parse(_params["id"])
 
     category_yml = YamlManager.get("category")
 
@@ -27,7 +27,15 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
       %{selection_id: selection.id, text: selection.text}
     end
 
-    data = %{title: enquete.title, description: enquete.description, category: category_yml[Integer.to_string(enquete.category)], selections: res_selections}
+    answered_data = get_session(conn, :answered)
+
+    answered = false
+
+    if enquete_id in answered_data do
+      answered = true
+    end
+
+    data = %{title: enquete.title, description: enquete.description, category: category_yml[Integer.to_string(enquete.category)], selections: res_selections, answered: answered}
 
     conn
     |> render("detail.json", data: %{enquete: data})
@@ -35,7 +43,39 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
 
   def answer(conn, _params) do
 
+    {enquete_id, _} = Integer.parse(_params["enquete_id"])
+    {selection_id, _} = Integer.parse(_params["selection_id"])
+
+    answered = get_session(conn, :answered)
+
+    if answered != nil do
+      if enquete_id in answered do
+        conn
+        |> render("answer.json", data: %{result: "fail", reason: "すでに回答済みです"})
+      else
+        answered = [enquete_id] ++ answered
+      end
+    else
+      answered = [enquete_id]
+    end
+
+    # 選択肢のデータを取得
+    selection = Repo.get_by Selection, id: selection_id
+
+    # ないデータの場合はエラー
+    if selection == nil do
+      conn
+      |> render("answer.json", data: %{result: "fail", reason: "存在しない選択肢です"})
+    end
+
+    update_data = Ecto.Changeset.change selection, score: selection.score + 1
+
+    # 更新
+    Repo.update update_data
+
+    conn = put_session(conn, :answered, answered)
+
     conn
-    |> render("answer.json", result: 'success')
+    |> render("answer.json", data: %{result: "success"})
   end
 end

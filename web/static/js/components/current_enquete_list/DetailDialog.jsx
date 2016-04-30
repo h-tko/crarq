@@ -57,6 +57,11 @@ export default class DetailDialog
         this.dialog.querySelector('#description').innerText = data.enquete.description;
         this.dialog.querySelector('#category').innerText = data.enquete.category;
 
+        // 回答済み判定
+        if (data.enquete.answered) {
+            $(this.dialog).find("#answer-btn").prop('disabled', true).text("回答済み")
+        }
+
         // selection
         $(this.dialog).find("#selections").empty();
         var selections = data.enquete.selections;

@@ -4,6 +4,7 @@ defmodule ChildRearingQuestion.Selection do
   schema "selections" do
     field :enquete_id, :integer
     field :sort, :integer
+    field :score, :integer
     field :text, :string
     field :delete_flg, :string
 
@@ -11,7 +12,7 @@ defmodule ChildRearingQuestion.Selection do
   end
 
   @required_fields ~w(enquete_id text)
-  @optional_fields ~w(sort delete_flg)
+  @optional_fields ~w(sort score delete_flg)
 
   @doc """
   Creates a changeset based on the `model` and `params`.
