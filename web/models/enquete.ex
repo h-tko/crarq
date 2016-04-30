@@ -83,7 +83,8 @@ defmodule ChildRearingQuestion.Enquete do
     query = from e in Enquete,
       join: es in EnqueteScore, on: e.id == es.enquete_id,
       where: e.delete_flg == false
-             and e.status == 1,
+             and e.status == 1
+             and es.vote_score >= 5,
       order_by: [desc: es.vote_score],
       limit: ^limit,
       select: e

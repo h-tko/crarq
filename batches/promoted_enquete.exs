@@ -20,6 +20,7 @@ defmodule ChildRearingQuestion.PromotedEnquete do
       {:ok, start_date} ->
 
         for enquete <- enquete_list do
+
           # 更新処理
           update_data = Ecto.Changeset.change enquete, %{status: 2, start_date: start_date}
           Repo.update update_data
