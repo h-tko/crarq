@@ -16,7 +16,7 @@ defmodule ChildRearingQuestion.Router do
   scope "/", ChildRearingQuestion do
     pipe_through :browser # Use the default browser stack
 
-    get "/", EnqueteListController, :index
+    get "/", TopController, :index
 
     # 登録系
     get "/entry/", EntryController, :index

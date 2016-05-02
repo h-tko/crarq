@@ -1,9 +1,3 @@
-top_index:
-  title: CRarQ | 育児・子育て世代のためのアンケートサイト
-  description: CRarQは、育児・子育てについての悩みのアンケートを取ることができるサービスです。
-  keywords: 子育て,育児,アンケート,CRarQ
-  robots: noydir,noodp,index,follow
-
 entry_index: &entry_base
   title: CRarQ | アンケート登録
   description: たくさんの人に聞いてみたい子育ての悩みをアンケートにして登録しましょう！【CRarQ】
@@ -36,8 +30,3 @@ current_enquete_list_index:
   keywords: 子育て,育児,アンケート,CRarQ
   robots: noydir,noodp,index,follow
 
-current_enquete_list_result:
-  title: CRarQ | 実施中のアンケートの回答結果詳細
-  description: 現在実施中のアンケートの回答結果詳細です。
-  keywords: 子育て,育児,アンケート,回答結果,CRarQ
-  robots: noydir,noodp,index,follow

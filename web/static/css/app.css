@@ -13,3 +13,16 @@
 dialog.lg {
     width: 500px;
 }
+
+.top-card-wide.mdl-card {
+  width: 768px;
+}
+
+.top__bg-container {
+  background-image: url("/images/top_bg.jpg");
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: inline-block;
+  width: 100%;
+}
