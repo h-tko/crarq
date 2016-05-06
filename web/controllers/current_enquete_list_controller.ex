@@ -31,7 +31,7 @@ defmodule ChildRearingQuestion.CurrentEnqueteListController do
 
     answered = false
 
-    if enquete_id in answered_data do
+    if answered_data != nil and enquete_id in answered_data do
       answered = true
     end
 

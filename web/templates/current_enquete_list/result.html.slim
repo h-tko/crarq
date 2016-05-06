@@ -16,17 +16,17 @@
           .mdl-grid
             .mdl-cell.mdl-cell--12-col
               span #{@data.category["#{@data.enquete.category}"]}
-          .mdl-grid
-            h5 アンケート期間
-          .mdl-grid
-            .mdl-cell.mdl-cell--12-col
-              span #{@data.enquete.collection_period_date}
+          /.mdl-grid
+            /h5 アンケート期間
+          /.mdl-grid
+            /.mdl-cell.mdl-cell--12-col
+              /span #{@data.enquete.collection_period_date}
           .mdl-grid
             h5 選択肢
           ul
-            = for selection <- @data.selections do
-              table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-                tbody
+            table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+              tbody
+                = for selection <- @data.selections do
                   tr
                     th #{selection.text}
                     td #{selection.score}票
