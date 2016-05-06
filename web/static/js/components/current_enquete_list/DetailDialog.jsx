@@ -38,7 +38,7 @@ export default class DetailDialog
             return;
         }
 
-        var selection_id = $('input[name=selection]').val();
+        var selection_id = $('input[name=selection]:checked').val();
 
         this._callAnswerApi(this.enquete_id, selection_id)
         .then(resolve => {
