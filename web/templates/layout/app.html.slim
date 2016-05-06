@@ -4,7 +4,10 @@ html lang="ja"
   head
     meta http-equiv="Content-Type" content="text/html; charset=UTF-8"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0 minimum-scale=1.0"
+    meta name="mobile-web-app-capable" content="yes"
+    meta name="application-name" content="CRarQ"
+
     meta name="csrf" content=Plug.CSRFProtection.get_csrf_token()
 
     title #{@data.heading["title"]}
@@ -20,7 +23,7 @@ html lang="ja"
     link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"
 
     script src=static_path(@conn,"/js/vendor.js")
-  body
+  body.components
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-header.mdl-layout--fixed-tabs
       header.mdl-layout__header
         .mdl-layout__header-row
@@ -39,7 +42,7 @@ html lang="ja"
           a class="mdl-navigation__link#{if @data.active_tab == "entry" do ' is-active' else '' end}" href="/entry/" アンケート登録
           /a class="mdl-navigation__link#{if @data.active_tab == "results" do ' is-active' else '' end}" href="#" アンケート結果
 
-      main.mdl-layout__content role="main"
+      main.main-content.mdl-layout__content.mdl-color-text--grey-600
         = render @view_module, @view_template, assigns
 
     script src=static_path(@conn,"/js/app.js")

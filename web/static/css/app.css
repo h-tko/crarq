@@ -26,3 +26,7 @@ dialog.lg {
   display: inline-block;
   width: 100%;
 }
+
+.main-content.mdl-layout__content {
+  overflow: visible;
+}

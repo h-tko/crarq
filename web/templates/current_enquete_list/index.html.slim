@@ -1,29 +1,26 @@
 .page-content
   .mdl-grid
-    .mdl-cell.mdl-cell--1-col
-    .mdl-cell.mdl-cell--10-col
-      table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
-        thead
+    table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp
+      thead
+        tr
+          th 順位
+          th.mdl-data-table__cell--non-numeric タイトル
+          th.mdl-data-table__cell--non-numeric コメント
+          th 現在の回答数
+          th.mdl-data-table__cell--non-numeric 回答
+          th.mdl-data-table__cell--non-numeric みんなの回答を見る
+      tbody
+        = for {{enquete, score}, i} <- Enum.with_index(@data.enquete_list) do
           tr
-            th 順位
-            th.mdl-data-table__cell--non-numeric タイトル
-            th.mdl-data-table__cell--non-numeric コメント
-            th 現在の回答数
-            th.mdl-data-table__cell--non-numeric 回答
-            th.mdl-data-table__cell--non-numeric みんなの回答を見る
-        tbody
-          = for {{enquete, score}, i} <- Enum.with_index(@data.enquete_list) do
-            tr
-              td #{i + 1}位
-              td.mdl-data-table__cell--non-numeric #{enquete.title}
-              td.mdl-data-table__cell--non-numeric
-                = text_to_html(enquete.description)
-              td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
-              td
-                a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.show-enquete-detail href="#" value="#{enquete.id}" 回答する
-              td
-                a.mdl-button href="/current_enquete_list/result/#{enquete.id}/" 結果を見る
-    .mdl-cell.mdl-cell--1-col
+            td #{i + 1}位
+            td.mdl-data-table__cell--non-numeric #{enquete.title}
+            td.mdl-data-table__cell--non-numeric
+              = text_to_html(add_br(enquete.description))
+            td id="vote-count-#{enquete.id}" #{if score == nil do "0" else score.selection_total_score end}
+            td
+              a.mdl-button.mdl-js-button.mdl-button--raised.mdl-button--colored.show-enquete-detail href="#" value="#{enquete.id}" 回答する
+            td
+              a.mdl-button href="/current_enquete_list/result/#{enquete.id}/" 結果を見る
 
 dialog.lg.mdl-dialog id="enquete-detail-dialog"
   h4.mdl-dialog__title
