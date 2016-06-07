@@ -56,7 +56,7 @@ defmodule ChildRearingQuestion.EntryController do
           for selection <- selections do
 
             # 登録パラメータ生成
-            insert_param = Selection.changeset(%Selection{}, %{enquete_id: _enquete.id, text: selection})
+            insert_param = Selection.changeset(%Selection{}, %{enquete_id: _enquete.id, text: selection, score: 0})
 
             # 登録実行
             case Selection.create(insert_param, ChildRearingQuestion.Repo) do
